@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landlord</title>
+  <style>
+    .maintenance-requests-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+    .maintenance-requests-table th, td {
+      padding: 8px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    
+    .btn-view, .btn-complete {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .aside {
+  background-color: #333;
+  color: #fff;
+  
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+}
+.container {
+  margin-left: 250px;
+  padding: 20px;
+}
+
+    .btn-complete {
+      background-color: #f44336; /* Red */
+    }
+    @media screen and (max-width: 600px) {
+      .aside {
+        display: none;
+      }
+      .container {
+        margin: 0;
+        padding: 20px;
+      }
+      .maintenance-requests-table {
+        width: 100%;
+      }
+      .maintenance-requests-table th, td {
+        padding: 12px;
+      }
+      .btn-view, .btn-complete {
+        padding: 10px 16px;
+        font-size: 14px;
+      }
+    }
+    </style>
+</head>
+<body>
+    <main>
+         <div class="aside">
+            <div class="aside">
+                <%- include("_sidebar.ejs") %>
+              </div>
+             
+         </div>
+
+        <div class="container">
+            <h1>Maintenance Requests</h1>
+            <table class="maintenance-requests-table">  <thead>
+                <tr>
+                  <th>Residence</th>
+                  <th>Tenant Name</th>
+                  <th>Room Number</th>
+                  <th>Maintenance Type</th>
+                  <th>Urgency</th>
+                  <th>Status</th>
+                  <th>Actions</th>  </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>123 Main St</td>
+                  <td>John Doe</td>
+                  <td>101</td>
+                  <td>Leaky Faucet</td>
+                  <td>High</td>
+                  <td><input type="checkbox" /></td>
+                  <td>  <button class="btn-view">View Details</button>
+                    <button class="btn-complete">Mark Complete</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>456 Elm St</td>
+                  <td>Jane Smith</td>
+                  <td>202</td>
+                  <td>Clogged Drain</td>
+                  <td>Medium</td>
+                  <td><input type="checkbox" /></td>
+                  <td>  <button class="btn-view">View Details</button>
+                    <button class="btn-complete">Mark Complete</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>789 Oak St</td>
+                  <td>Bob Johnson</td>
+                  <td>303</td>
+                  <td>Broken Light</td>
+                  <td>Low</td>
+                  <td><input type="checkbox" /></td>
+                  <td>  <button class="btn-view">View Details</button>
+                    <button class="btn-complete">Mark Complete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </main>
+
+
+
+
+
+</body>
+</html>  

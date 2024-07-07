@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>payment</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: rgb(150, 143, 143);
+        }
+    
+        .payment-details {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 15px;
+        }
+
+      .conta{
+        display: flex;
+      }
+        .payment-form {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .content-1{
+          background-color:black;
+          color: white;
+          margin:120px auto;
+          box-shadow: 0px 0px 5px black;
+          border-radius: 8px;
+
+          
+        
+        }
+        #sub{
+          padding: 15px;
+          background-color: grey;
+          width: 50%;
+          margin: 0 auto;
+          border-radius: 8px;
+          margin-top:20px ;
+          cursor:alias;
+        }
+        #sub:hover{
+          background-color: orange;
+        }
+        h2{
+          text-align: center;
+          background-color: red;
+          color: whitesmoke;
+          width: 98%;
+          text-transform: uppercase;
+          font-weight: 900;
+          font-size: 20px;
+          padding: 20px;
+        }
+        h1{
+          text-align: center;
+        }
+        
+    .main-2{
+    width: 20%;
+    margin-top: -15px;
+     background-color: red; 
+    }
+        .payment-form label {
+          font-weight: bold;
+        }
+    
+        .payment-method {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .mpesa-pay{
+          width: 50%;
+          height: 200px;
+          box-shadow: 0px 0px 5px black;
+          border-radius: 8px;
+          margin: 0 auto;
+          margin-left: 80%;
+          position: relative;
+          bottom: 150px;
+        display: none;
+        }
+        .mpesa-pay p{
+          margin-bottom: 20px;
+          color: rgb(37, 156, 37);
+          font-weight: 900;
+          font-size: 18px;
+          
+          text-align: center;
+        }
+        .mpesa-pay input{
+          border: solid lawngreen 3px;
+          margin-left: 50px;
+          padding: 15px;
+          border-radius: 8px;
+          margin-bottom: 45px;
+        }
+        .mpesa-pay button{
+          background-color: lawngreen;
+          padding: 10px;
+          text-align: center;
+          margin-left: 80px;
+          border: none;
+          border-radius: 8px;
+        }
+    
+        .payment-method input[type="radio"] {
+          width: 15px;
+          height: 15px;
+        }
+      </style>
+</head>
+<body>
+  <h2>make your payment !!</h2>
+    <div class="conta">
+        
+        <div class="main-2">
+                    <%- include('_tenantsidebar.ejs') %>
+
+        </div>
+        <div class="content-1">
+          
+                <h1>Make a Payment</h1>
+
+  <div class="payment-details">
+    <p>Tenant Name: <!-- [User Name] -->Peter NJuguna</p>
+    <p>Property: 
+      <select name="rent" id="rent">
+        <option value=""></option>
+        <option value="one-bed">One Bedroom shs:15000</option>
+        <option value="two-bed">Two Bedroom :shs 25000</option>
+        <option value="three-bed">Three Bedroom :shs 35000</option>
+
+      </select>
+    </p>
+  </div>
+
+  <div class="payment-details">
+    <p>Payment Due <input type="date" name="date" id="date"></p>
+    <p>Amount Due:shs 35000 <!-- [Total Rent Amount] from database according to selection --></p>
+  </div>
+
+  <form class="payment-form" id="payment-form">
+    <label for="payment-method">Payment Method:</label>
+    <div class="payment-method">
+      <input type="radio" id="credit-card" name="payment-method" value="credit-card" checked>
+      <label for="credit-card">Credit Card</label>
+    </div>
+    <div class="payment-method">
+      <input type="radio" id="debit-card" name="payment-method" value="debit-card">
+      <label for="debit-card">Debit Card</label>
+    </div>
+    <div class="payment-method">
+      <input type="radio" id="ach" name="payment-method" value="ach">
+      <label for="ach">ACH Bank Transfer</label>
+    </div>
+    <div class="payment-method">
+      <input type="radio" id="debit-card" name="payment-method" value="debit-card">
+      <label for="mpesa">M-pesa</label>
+    </div>
+    <div class="mpesa-pay">
+      <p>Enter M-PESA number</p>
+      <input type="text" name="mpesa" id="mpesa" placeholder="xxxxxxxxxx">
+      <a href="/darajapi.com" target="_parent"><button type="submit">Submit Payment</button></a>
+    </div>
+
+    <div id="credit-card-details" class="payment-details hidden">
+      <label for="card-number">Card Number:</label>
+      <input type="text" id="card-number" name="card-number" required>
+      <label for="expiry-date">Expiry Date:</label>
+      <input type="month" id="expiry-date" name="expiry-date" required>
+      <label for="cvv">CVV:</label>
+      <input type="text" id="cvv" name="cvv" required maxlength="3">
+    </div>
+
+    <div id="ach-details" class="payment-details hidden">
+      <label for="routing-number">Routing Number:</label>
+      <input type="text" id="routing-number" name="routing-number" required>
+      <label for="account-number">Account Number:</label>
+      <input type="text" id="account-number" name="account-number" required>
+    </div>
+
+    <button type="submit" id="sub">Submit Payment</button>
+  </form>
+              </div>
+        
+      
+    </div>
+    <script>      
+
+   const paymentMethod = document.getElementsByName('payment-method');
+    const creditCardDetails = document.getElementById('credit-card-details');
+    const achDetails = document.getElementById('ach-details');
+
+    paymentMethod.forEach(method => {
+      method.addEventListener('change', (event) => {
+        if (event.target.value === 'credit-card') {
+          creditCardDetails.classList.remove('hidden');
+        }
+    })
+        })
+
+        
+        </script>
+</body>
+</html>

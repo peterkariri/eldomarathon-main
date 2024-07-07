@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Eldoret City Center Parking</title>
+    <link rel="stylesheet" href="/stylesheet/login.css">
+    <link rel="shortcut icon" href="images/3.png" type="image/x-icon">
+</head>
+<body>
+   
+    <main>
+        <section>
+            <h1> Sign In</h1>
+            <% if(locals.message){ %>
+                <p style="color:orangered"> <%=locals.message%> </p>
+            <%}%>
+            <% if(locals.error){ %>                
+                <form action="/login" method="post">
+                    
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" value="<%=locals.prevInput.email%>">
+                        </div>
+                        
+                        <div>
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="pass" value="<%=locals.prevInput.pass%>">
+                        </div>
+                        
+                        <div>
+                            <input type="submit" value="Sign In">
+                        </div>
+                        <div>
+                            <p>Dont have an account?<a href="/signup">Signup</a></p>
+
+                        </div>
+
+                </form>
+            <%}else{%>
+                <form action="/login" method="post">
+                      
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email">
+                        </div>
+                     
+                        <div>
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="pass">
+                        </div>
+                      
+                        <div>
+                            <input type="submit" value="Sign In">
+                        </div>
+                        <div>
+                            <p>Dont have an account?<a href="/signup">Signup</a></p>
+
+                        </div>
+
+                </form>
+            <%}%>
+        </section>
+    </main>
+    
+</body>
+</html>

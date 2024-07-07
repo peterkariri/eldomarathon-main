@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landlord Payment Dashboard</title>
+<style>
+     body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.property {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.property h2 {
+  margin-top: 0;
+}
+.container {
+  margin-left: 250px;
+  padding: 20px;
+}
+.aside {
+  background-color: #333;
+  color: #fff;
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+}
+
+
+
+.property table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.property th,
+.property td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.property th {
+  text-align: left;
+  background-color: #ddd;
+}
+
+.property p {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 20px;
+}
+  /* Layout for larger screens */
+  @media (min-width: 768px) {
+      .container {
+        margin-left: 250px;
+        padding: 20px;
+      }
+
+      .aside {
+        background-color: #333;
+        color: #fff;
+        width: 250px;
+        height: 100vh;
+        position: fixed;
+      }
+    }
+
+    /* Layout for smaller screens */
+    @media (max-width: 767px) {
+      .container,
+      .aside {
+        width: 100%;
+        padding: 10px;
+      }
+
+      .aside {
+        position: static;
+        margin-bottom: 20px;
+      }
+    }
+</style>
+</head>
+<body>
+<main>
+    <div class="aside">
+        <div class="aside">
+            <%- include("_sidebar.ejs") %>
+          </div>
+    </div>
+    <div class="container">
+        <h1>Landlord Payment Dashboard</h1>
+
+        <div class="property">
+            <h2>Crystal palace.</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tenant Name</th>
+                  <th>Rent Paid</th>
+                  <th>Other Expenses Paid</th>
+                  <th>Total Paid</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>John Mwangi</td>
+                  <td><input type="checkbox" id="rentPaid1" name="rentPaid1" value="Yes" checked><label for="rentPaid1">Yes</label></td>
+                  <td><input type="checkbox" id="otherExpensesPaid1" name="otherExpensesPaid1" value="No"><label for="otherExpensesPaid1">No</label></td>
+                  <td>shs 15000</td>
+                </tr>
+                <tr>
+                  <td>Slyvester Smith</td>
+                  <td><input type="checkbox" id="rentPaid2" name="rentPaid2" value="No"><label for="rentPaid2">No</label></td>
+                  <td><input type="checkbox" id="otherExpensesPaid1" name="otherExpensesPaid1" value="No"><label for="otherExpensesPaid1">No</label></td>
+        
+                </tr>
+              </tbody>
+            </table>
+            <p>Total Income for Crystal Palace shs 40000</p>
+          </div>
+        
+          <div class="property">
+            <h2>Mwafrika Residence</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tenant Name</th>
+                  <th>Rent Paid</th>
+                  <th>Other Expenses Paid</th>
+                  <th>Total Paid</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Bob Kimani</td>
+                  <td><input type="checkbox" id="rentPaid3" name="rentPaid3" value="Yes" checked><label for="rentPaid3">Yes</label></td>
+                  <td><input type="checkbox" id="otherExpensesPaid3" name="otherExpensesPaid3" value="Yes" checked><label for="otherExpensesPaid3">Yes</label></td>
+                  <td>shs 20,000</td>
+                </tr>
+                <tr>
+                  <td>Alice Kipchumba</td>
+                  <td><input type="checkbox" id="rentPaid4" name="rentPaid4" value="No"><label for="rentPaid4">No</label></td>
+                  <td><input type="checkbox" id="otherExpensesPaid4" name="otherExpensesPaid4" value="No"><label for="otherExpensesPaid4">No</label></td>
+                  <td>shs 15500</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>Total Income for Mwafrika Residence 35000</p>
+          </div>
+            <!-- Calculate the total income for all properties -->
+    
+      </div>
+</main>
+  <!-- Loop through each property -->
+ 
+  
+
+  <script>
+    // Calculate the total income for all properties
+    let totalIncome = 0;
+    totalIncome += 40000; // Total income for 123 Main St.
+    totalIncome += 35000; // Total income for 456 Elm St.
+    document.write('Total Income: ' + totalIncome);
+  </script>
+
+  
+ 
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lease</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          background-color: rgb(233, 159, 132);
+          
+        }
+        main{
+            display: flex;
+        }
+        .content{
+          margin: 0 auto;
+        }
+    
+        h1,
+        h2 {
+          margin-bottom: 10px;
+        }
+        .lease-info{
+          margin-left: 50px;
+          margin-right: 200px;
+        }
+        .side{
+            background-color: orangered;
+            width: 20%;
+        }
+
+        .details{
+          box-shadow: 0px 5px 5px black;
+          background-color: rgb(255, 91, 32);
+        margin-bottom: 80px;
+        }
+        h1{
+          text-align: center;
+          text-transform: uppercase;
+          font-weight: 900;
+          font-size: 30px;
+        }
+        .details-1{
+          background-color: rgb(219, 98, 54);
+        box-shadow: 0px 5px 5px black;
+      margin-bottom: 100px;
+        }
+        .details-2{
+          box-shadow: 0px 5px 5px black;
+
+          background-color: grey;
+        }
+    .details,.details-1,.details-2{
+        display: flex;
+        justify-content: space-between;
+    }
+        .lease-info,
+        .rent-fees,
+        .tenant-responsibilities,
+        .landlord-responsibilities,
+        .termination-clause,
+        .dispute-resolution,
+        .signatures {
+          margin-bottom: 20px;
+        }
+      </style>
+</head>
+<body>
+<div class="container-1">
+        <main>
+            <div class="side">
+                <%- include('_tenantsidebar.ejs') %>
+
+            </div>
+       <div class="content">
+
+  <h1>Lease Agreement</h1>
+<div class="details">
+    <div class="lease-info">
+        <h2>Lease Information</h2>
+        <p>Landlord:
+          <select name="landlord" id="landlord">
+            <option value=""></option>
+          <option value="1">John Simiyu</option>
+          <option value="2">Oscar Kipchumba</option>
+          <option value="3">John Mwangi</option>
+          <option value="4">Alex Gatimu</option>
+          <option value="5">Felista Wairimu</option>
+
+        </select> </p>
+        <p>Landlord Contact: 
+          <select name="landlord" id="landlord">
+            <option value=""></option>
+          <option value="1">John Simiyu:0123456789</option>
+          <option value="2">Oscar Kipchumba:0725367248</option>
+          <option value="3">John Mwangi:0724367834</option>
+          <option value="4">Alex Gatimu:0123567890</option>
+          <option value="5">Felista Wairimu:0198765432</option>
+
+        </select> </p>
+        </p>
+        <p>Tenant(s): <!-- name form database -->Peter Njuguna</p>
+        <p>Tenant Contact: <!-- from database --> 07253764292</p>
+        <p>Property Type: Three Bedroom</p>
+<!--         dataa from database
+ -->        <p>Lease Start Date: 24/4/2023</p>
+        <p>Lease End Date: ___</p>
+      </div>
+    
+      <div class="rent-fees">
+        <h2>Rent and Fees</h2>
+        <p>Monthly Rent
+          <select name="rent" id="rent">
+            <option value=""></option>
+            <option value="one-bed">One Bedroom shs:15000</option>
+            <option value="two-bed">Two Bedroom :shs 25000</option>
+            <option value="three-bed">Three Bedroom :shs 35000</option>
+
+          </select>
+        </p>
+        <p>Due Date: 3rd of Every Month</p>
+        <p>Late Fees:shs 300 fee fine per day after due day</p>
+        <p>Security Deposit: shs 5000 </p>
+        <p>Security Deposit Return Conditions:If Tenant wants to vacate leaving the house in perfect condition ,<br>the security deposit 
+          will be returned in full else if any damages ,the expenses will be <br>computed and deducted form the security before reimbursment.
+        </p>
+        
+      </div>
+</div>
+ 
+<div class="details-1">
+    <div class="tenant-responsibilities">
+        <h2>Tenant Responsibilities</h2>
+        <ul>
+          <li>Pay rent on time and in full.</li>
+          <li>Maintain the property within reasonable wear and tear guidelines.</li>
+          <li>Keep peace in the residence </li>
+        </ul>
+      </div>
+    
+      <div class="landlord-responsibilities">
+        <h2>Landlord Responsibilities</h2>
+        <ul>
+          <li>Maintain the property in a habitable condition.</li>
+          <li>Respond to repair requests within a reasonable timeframe.</li>
+          <li></li>Ensure order in the apartments</li>
+        </ul>
+      </div>
+
+    
+      
+</div>
+  
+<div class="details-2">
+    <div class="termination-clause">
+        <h2>Termination Clause</h2>
+        <p>Incase of any violation regarding the peace of your neighbours,it will lead <br>
+        to a forcefull termination of your stay with us.
+        </p>
+        <p>Notice Period:There will be a One month notice period for Termination</p>
+      </div>
+    
+      <div class="dispute-resolution">
+        <h2>Dispute Resolution</h2>
+        <p>Incase of a misunderstanding ,there are various ways to solve the different situations <br>
+        ,There are proffessional mediators,trained professional who will come to solve the issue.
+        </p>
+      </div>
+</div>
+ 
+
+  <div class="signatures">
+    <h2>Signatures</h2>
+    <p>Landlord Signature:</p>
+    <p>[Signature Line]</p>
+    <p>Date:<input type="date"></p>
+    <p>Tenant Signature(s):</p>
+    <p>[Signature Line(s)]</p>
+    
+  </div>
+
+    </div>
+   </main>
+  </div>
+    <script>
+         const downloadBtn = document.createElement('button');
+  downloadBtn.textContent = 'Download Lease Agreement'
+    </script>
+</body>
+</html>

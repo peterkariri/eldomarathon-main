@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          background-color: rgb(130, 130, 184);
+        }
+       #maintenance-request-form{
+        width: 100%;
+       }
+        .form-group {
+          margin-bottom: 50px;
+          
+        }
+       .container{
+        display: flex;
+        justify-content: center;
+        
+
+       }
+       h2{
+        background-color: grey;
+        padding: 30px;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 800;
+       }
+       .content{
+        box-shadow: 0px 0px 8px black;
+        margin: 30px 200px;
+        background-color: whitesmoke;
+        width: 100%;
+       }
+       
+     
+        .form-group label {
+          display: block;
+          margin-bottom: 5px;
+          font-weight: bold;
+        }
+        .form-group select{
+            width: 80%;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .form-group textarea{
+            width: 80%;
+            height: 30vh;
+        }
+        button{
+            background-color: blue;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            margin-left: 50px;
+        }
+        button:hover{
+            transform: scale(1.2);
+
+        }
+    
+        .tenant{
+          
+            width: 25%;
+            background-color: rgb(7, 7, 27);
+        }
+        .success-message {
+          background-color: lightgreen;
+          padding: 10px;
+          border-radius: 5px;
+          display: none;
+        }
+    
+        .request-list {
+          margin-top: 20px;
+          margin-left: 20px;
+        }
+    
+        .request-list table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+    
+        .request-list th,
+        .request-list td {
+          padding: 5px;
+          border: 1px solid #ddd;
+        }
+      </style>
+</head>
+<body>
+
+    <h2>Are there any issues with the accomodations ???</h2>
+ <div class="container">
+    <div class="tenant">
+        <%- include('_tenantsidebar.ejs') %>
+    </div>
+  <div class="content">
+     
+                
+   <h1>Submit Maintenance Request</h1>
+
+  <div class="success-message">
+    Your maintenance request has been submitted successfully!
+  </div>
+
+  <form id="maintenance-request-form">
+    <div class="form-group">
+      <label for="urgency">Urgency Level:</label>
+      <select name="urgency" id="urgency">
+        <option value="emergency">Emergency</option>
+        <option value="high">High</option>
+        <option value="medium" selected>Medium</option>
+        <option value="low">Low</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select name="status" id="category">
+        <option value="plumbing">Plumbing</option>
+        <option value="electrical">Electrical</option>
+        <option value="appliance">Appliance Repair</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea name="description" id="description" rows="5" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="attachment">Attach Photo (Optional):</label>
+      <input type="file" id="attachment" name="attachment" accept="image/*">
+    </div>
+
+    <button type="submit">Submit Request</button>
+  </form>
+  <div class="request-list">
+    <h3>Your Recent Requests</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date Submitted</th>
+          <th>Urgency</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        </tbody>
+    </table>
+  </div>
+ </div>
+</div>
+ 
+ 
+   <script>
+      const requestForm = document.getElementById('maintenance-request-form');
+    const successMessage = document.querySelector('.success-message');
+    const requestList = document.querySelector('.request-list tbody');
+
+    // Function to handle form submission (replace with your actual logic for database interaction)
+    function submitRequest(formData) {
+      // Simulate successful submission (replace with actual database interaction)
+      console.log('Submitting request:', formData);
+      return new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate delay
+    }
+
+    // Function to display success message and clear form
+    function showSuccessMessage() {
+      successMessage.style.display = 'block';
+      requestForm.reset();
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 3000); // Hide message after 3 seconds
+    }
+
+    //inputting data into the database
+    const form = document.getElementById('maintenance-request-form');
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const response = await fetch('/maintenance-requests', {
+      method: 'POST',
+      body: formData
+    });
+    if (response.ok) {
+      form.reset();
+      alert('Maintenance request submitted successfully!');
+    } else {
+      console.error('Error submitting maintenance request');
+    }
+  });
+
+    // Function to update request list (replace with actual data retrieval logic)
+    function updateRequestList(requests) {
+      requestList.innerHTML = ''; // Clear existing rows
+
+      requests.forEach((request) => {
+        const row = document.createElement('tr');
+
+        const idCell = document.createElement('td');
+        idCell.textContent = request.id; // Replace with actual ID property
+        row.appendChild(idCell);
+
+        const submittedDateCell = document.createElement('td');
+        submittedDateCell.textContent = request.submittedDate; // Replace with actual submitted date property
+        row.appendChild(submittedDateCell);
+
+        const urgencyCell = document.createElement('td');
+        urgencyCell.textContent = request.urgency; // Replace with actual urgency property
+        row.appendChild(urgencyCell);
+
+        const categoryCell = document.createElement('td');
+        categoryCell.textContent = request.category; // Replace with actual category property
+        row.appendChild(categoryCell);
+
+        const descriptionCell = document.createElement('td');
+        descriptionCell.textContent = request.description; // Replace with actual description property
+        row.appendChild(descriptionCell);
+
+        const statusCell = document.createElement('td');
+        statusCell.textContent = request.status; // Replace with actual status property (e.g., Submitted, Pending, Completed)
+        row.appendChild(statusCell);
+
+        requestList.appendChild(row);
+      });
+    }
+
+    requestForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(requestForm);
+
+      try {
+        await submitRequest(formData); // Simulate request submission (replace with actual logic)
+        showSuccessMessage();
+
+        // Replace with your actual logic to retrieve recent requests from database
+        const recentRequests = [
+          { id: 1, submittedDate: '2024-04-25', urgency: 'High', category: 'Plumbing', description: 'Leaking faucet in bathroom sink', status: 'Submitted' },
+          // Add more sample requests here
+        ];
+        updateRequestList(recentRequests); // Update request list with sample data
+      } catch (error) {
+        console.error('Error submitting request:', error);
+        // Handle submission errors (display error message to user)
+      }
+    });
+   </script>
+</body>
+</html>

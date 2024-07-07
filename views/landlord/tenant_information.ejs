@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Tenant Information</title>
+  <link rel="stylesheet" href="">
+  <style>
+    /* Base styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1,
+h2 {
+  margin-bottom: 10px;
+}
+
+p,
+ul {
+  margin-bottom: 5px;
+}
+
+a {
+  color: dodgerblue;
+  text-decoration: none;
+}
+
+/* Layout for larger screens */
+@media (min-width: 768px) {
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .tenant-details,
+  .tenant-activity {
+    width: 48%;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+  .tenant-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .tenant-actions a {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+  }
+}
+
+/* Layout for smaller screens */
+@media (max-width: 767px) {
+  .tenant-details,
+  .tenant-activity {
+    width: 100%;
+  }
+
+  .tenant-actions a {
+    margin-bottom: 5px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <h1>Tenant Information</h1>
+
+  <div class="tenant-details">
+    <h2>Peter NJuguna</h2>
+    <p><b>Property:</b> 123 Main St. (replace with actual address)</p>
+    <p><b>Lease Start:</b> 2024-01-01 (replace with actual date)</p>
+    <p><b>Lease End:</b> 2024-07-31 (replace with actual date)</p>
+    <ul>
+      <li><b>Contact Information:</b></li>
+        <li>Email: john.doe@example.com (replace with actual email)</li>
+        <li>Phone: (555) 555-5555 (replace with actual phone number)</li>
+      </li>
+      <li><b>Emergency Contact (optional):</b></li>
+        <li>Name: Jane Doe (replace with actual name)</li>
+        <li>Phone: (555) 555-1234 (replace with actual phone number)</li>
+    </ul>
+    <a href="#">View Payment History</a> (add link to payment history page)
+    <a href="#">View Lease Documents</a> (add link to view lease documents)
+    <a href="#">Send Message</a> (add logic to send messages to tenant)
+    <a href="#">Manage Maintenance Requests</a> (add link to manage maintenance requests)
+  </div>
+
+  <div class="tenant-activity">
+    <h2>Recent Activity</h2>
+    <ul>
+      <li>Submitted a maintenance request on 2024-04-25 for a plumbing leak in the kitchen.</li>
+      <li>Made a rent payment of $1,200 on 2024-04-01.</li>
+    </ul>
+  </div>
+
+</body>
+</html>

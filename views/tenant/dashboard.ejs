@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tenant Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="/stylesheet/dashboardt.css">
+</head>
+<body>
+  <div class="container">
+    <%- include('_tenantheader.ejs') %>
+    <main>
+      <div class="side">
+        <%- include('_tenantsidebar.ejs') %>
+
+      </div>
+      <div class="content">
+        <h1>Welcome to your Tenant Dashboard,
+          <% if (user && user.fullname) { %>
+            <%= user.fullname %>
+          <% } else { %>
+            
+          <% } %>
+        </h1>
+        <div class="canva">
+          <canvas id="payment-chart" width="200" height="200"></canvas>
+
+        </div>
+
+        <p>Here you can view your lease, pay rent, and submit maintenance requests.</p>
+        <h2>Lease Agreement</h2>
+        <p>Start Date: <%= leaseData.start_date %></p> <p>End Date: <%= leaseData.end_date %></p> <h2>Payment History</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          
+            <% if (paymentData && paymentData.length > 0) { %>
+              <h2>Payment History</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% paymentData.forEach(payment => { %>
+                    <tr>
+                      <td><%= payment.date %></td>
+                      <td><%= payment.amount %></td>
+                    </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            <% } else { %>
+              <p>No payment history available.</p>
+            <% } %>
+          
+        </table>
+        <% if (maintenanceData && maintenanceData.length > 0) { %>
+          <h2>Maintenance Requests</h2>
+          <ul>
+            <% maintenanceData.forEach(request => { %>
+              <li><%= request.description %> - <%= request.status %></li>
+            <% }); %>
+          </ul>
+        <% } else { %>
+          <p>No maintenance requests found.</p>
+        <% } %>        
+      </div>
+    </main>
+  </div>
+  <script>      
+  const rentPaymentChartCanvas = document.getElementById('payment-chart').getContext('2d');
+  const rentPaymentChart = new Chart(rentPaymentChartCanvas, { 
+  type: 'bar',
+  data: {
+  //labels: tenant.payments.map(payment => payment.date.getMonth()),
+  labels: ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December'],
+  datasets: [{
+    label: 'Rent Payments',
+   // data: tenant.payments.map(payment => payment.amount),
+   data: [50, 60, 70, 80, 90, 100,50,60,70,39,30,45],
+    backgroundColor: 'red',
+    borderColor: 'rgba(75, 192, 192, 1)',
+    borderWidth: 1
+  }]
+},
+options: {
+  responsive: true,
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: 'Month'
+      }
+    },
+    y: {
+      title: {
+        display: true,
+        text: 'Amount'
+      }
+    }
+  },
+  plugins: {
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'Rent Payments'
+    }
+  }
+}
+}); 
+  </script>
+</body>
+</html>
+

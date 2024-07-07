@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Eldoret City Center Parking</title>
+    <link rel="stylesheet" href="/stylesheet/signup.css">
+    <link rel="shortcut icon" href="images/3.png" type="image/x-icon">
+
+    
+</head>
+<body>
+  
+    <main>
+        <section class="form-container">
+            <h1> Sign Up</h1>
+            <% if(locals.error){ %>
+                <p style="color:orangered"> <%=locals.errMessage%> </p>
+                <form action="/signup" method="post" class="signup-form">
+                        <div>
+                            <label for="fullname">Full Name:</label>
+                            <input type="text" name="fullname" id="fullname" value="<%=locals.prevInput.fullname%>" >
+                        </div>
+                        <div>
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" id="email" value="<%=locals.prevInput.email%>">
+                        </div>
+                        <div>
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" name="phone" id="phone" value="<%=locals.prevInput.phone%>" >
+                        </div>
+                        <div>
+                            <label for="password">Password:</label>
+                            <input type="password" name="password" id="pass" value="<%=locals.prevInput.pass%>">
+                        </div>
+                        <div>
+                            <label for="confirmPass">Confirm Password:</label>
+                            <input type="password" name="confirmPass" id="confirmPass" value="<%=locals.prevInput.confirmPass%>">
+                        </div>
+                        <div>
+                          <label for="role">Role:</label>
+                           <select id="role" name="role" required>
+                                  <option value="tenant">Tenant</option>
+                                  <option value="landlord">Landlord</option>
+                           </select>
+                        </div>
+                        <div>
+                            <button type="submit">Sign Up</button>
+                        </div>
+                        <div>
+                            <p>Already have an account <a href="/login">Login</a></p>
+                        </div>
+                </form>
+            <%}else{%>
+                <form action="/signup" method="post" class="signup-form">
+                        <div>
+                            <label for="fullname">Full Name</label>
+                            <input type="text" name="fullname" id="fullname">
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email">
+                        </div>
+                        <div>
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" name="phone" id="phone" value="+254">
+                        </div>
+                        <div>
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="pass">
+                        </div>
+                        <div>
+                            <label for="confirmPass">Confirm Password</label>
+                            <input type="password" name="confirmPass" id="confirmPass">
+                        </div>
+                        <div>
+                             <label for="role">Role:</label>
+                    
+                             <select id="role" name="role" required >
+                                    <option value="tenant">Tenant</option>
+                                    <option value="landlord">Landlord</option>
+                             </select>
+                          </div>
+                        <div>
+                            <input type="submit" value="Sign Up">
+                        </div>
+                        <div>
+                            <p>Already have an account <a href="/login">Login</a></p>
+                        </div>
+                </form>
+            <%}%>
+        </section>
+    </main>
+    <script>
+        // Add animation on form submit
+        const signupForm = document.querySelector('.signup-form');
+        signupForm.addEventListener('submit', () => {
+            signupForm.classList.add('submit-animation');
+        });
+    </script>
+</body>
+</html>
